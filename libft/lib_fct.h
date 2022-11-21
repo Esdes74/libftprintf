@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   lib_fct.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 11:13:56 by eslamber          #+#    #+#             */
-/*   Updated: 2022/11/21 11:15:19 by eslamber         ###   ########.fr       */
+/*   Created: 2022/11/18 13:20:40 by eslamber          #+#    #+#             */
+/*   Updated: 2022/11/18 13:22:02 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
-# include <stdarg.h>
+#ifndef LIB_FCT_H
+# define LIB_FCT_H
+# include "./lib_math/lib_math.h"
+# include "./lib_mem/lib_mem.h"
+# include "./lib_str/lib_str.h"
+# include "./lib_print/lib_print.h"
 
-// Print like the printf function
-int	ft_printf(const char *str, ...);
 #endif

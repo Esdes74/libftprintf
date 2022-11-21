@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 11:13:56 by eslamber          #+#    #+#             */
-/*   Updated: 2022/11/21 11:15:19 by eslamber         ###   ########.fr       */
+/*   Created: 2022/11/16 17:25:26 by eslamber          #+#    #+#             */
+/*   Updated: 2022/11/18 12:24:12 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
-# include <stdarg.h>
+#include "../lib_print.h"
 
-// Print like the printf function
-int	ft_printf(const char *str, ...);
-#endif
+void	ft_putnbr_fd(int n, int fd)
+{
+	if (n > 9)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putchar_fd('0' + n % 10, fd);
+	}
+	else if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		ft_putnbr_fd((n / 10) * -1, fd);
+		ft_putchar_fd('0' + (n % 10) * -1, fd);
+	}
+	else
+		ft_putchar_fd('0' + n, fd);
+}

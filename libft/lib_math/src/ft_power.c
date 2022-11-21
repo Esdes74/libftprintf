@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_power.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 11:13:56 by eslamber          #+#    #+#             */
-/*   Updated: 2022/11/21 11:15:19 by eslamber         ###   ########.fr       */
+/*   Created: 2022/10/10 10:57:08 by eslamber          #+#    #+#             */
+/*   Updated: 2022/10/20 18:16:21 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
-# include <stdarg.h>
+#include "../lib_math.h"
 
-// Print like the printf function
-int	ft_printf(const char *str, ...);
-#endif
+void	ft_power(void)
+{
+	return ;
+}

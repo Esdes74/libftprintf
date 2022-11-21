@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_max.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 11:13:56 by eslamber          #+#    #+#             */
-/*   Updated: 2022/11/21 11:15:19 by eslamber         ###   ########.fr       */
+/*   Created: 2022/11/17 19:50:47 by eslamber          #+#    #+#             */
+/*   Updated: 2022/11/18 12:15:15 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
-# include <stdarg.h>
+#include "../lib_math.h"
 
-// Print like the printf function
-int	ft_printf(const char *str, ...);
-#endif
+size_t	max(size_t x, size_t y)
+{
+	if (x > y)
+		return (x);
+	return (y);
+}

@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 11:13:56 by eslamber          #+#    #+#             */
-/*   Updated: 2022/11/21 11:15:19 by eslamber         ###   ########.fr       */
+/*   Created: 2022/11/14 14:31:51 by eslamber          #+#    #+#             */
+/*   Updated: 2022/11/18 12:24:20 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
-# include <stdarg.h>
+#include "../lib_print.h"
 
-// Print like the printf function
-int	ft_printf(const char *str, ...);
-#endif
+void	ft_putstr_fd(char *s, int fd)
+{
+	size_t	ind;
+
+	ind = 0;
+	while (s[ind] != '\0')
+		ft_putchar_fd(s[ind++], fd);
+}

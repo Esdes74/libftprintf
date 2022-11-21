@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 11:13:56 by eslamber          #+#    #+#             */
-/*   Updated: 2022/11/21 11:15:19 by eslamber         ###   ########.fr       */
+/*   Created: 2022/11/09 18:14:14 by eslamber          #+#    #+#             */
+/*   Updated: 2022/11/18 12:27:25 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
-# include <stdarg.h>
+#include "../lib_mem.h"
 
-// Print like the printf function
-int	ft_printf(const char *str, ...);
-#endif
+void	*ft_memcpy(void *dest, const void *src, size_t n)
+{
+	size_t	len;
+
+	len = 0;
+	while (len < n)
+	{
+		((unsigned char *)dest)[len] = ((unsigned char *)src)[len];
+		len++;
+	}
+	return (dest);
+}
