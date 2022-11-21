@@ -6,25 +6,11 @@
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:07:36 by eslamber          #+#    #+#             */
-/*   Updated: 2022/11/17 09:43:39 by eslamber         ###   ########.fr       */
+/*   Updated: 2022/11/18 12:16:56 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_in(const char src, const char *test)
-{
-	size_t	ind;
-
-	ind = 0;
-	while (test[ind] != '\0')
-	{
-		if (test[ind] == src)
-			return (1);
-		ind++;
-	}
-	return (0);
-}
+#include "../lib_str.h"
 
 void	ft_analyse(const char *src, const char *set, size_t *len, size_t *len_f)
 {

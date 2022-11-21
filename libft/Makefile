@@ -5,102 +5,142 @@
 #                                                     +:+ +:+         +:+      #
 #    By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/08 07:23:10 by eslamber          #+#    #+#              #
-#    Updated: 2022/11/16 17:22:37 by eslamber         ###   ########.fr        #
+#    Created: 2022/11/18 12:59:41 by eslamber          #+#    #+#              #
+#    Updated: 2022/11/21 10:50:11 by eslamber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #
-### Variables allocations
+### Definitions of variables
 #
 
-SRC := ft_atoi.c \
-	   ft_strjoin.c \
-	   ft_bzero.c \
-	   ft_strlcat.c \
-	   ft_calloc.c \
-	   ft_strlcpy.c \
-	   ft_isalnum.c \
-	   ft_strlen.c \
-	   ft_isalpha.c \
-	   ft_strmapi.c \
-	   ft_isascii.c \
-	   ft_memchr.c \
-	   ft_strncmp.c \
-	   ft_isdigit.c \
-	   ft_memcmp.c \
-	   ft_strnstr.c \
-	   ft_isprint.c \
-	   ft_memcpy.c \
-	   ft_strchr.c \
-	   ft_strrchr.c \
-	   ft_itoa.c \
-	   ft_memmove.c \
-	   ft_strtrim.c \
-	   ft_memset.c \
-	   ft_substr.c \
-	   ft_split.c \
-	   ft_tolower.c \
-	   ft_strdup.c \
-	   ft_toupper.c \
-	   ft_striteri.c \
-	   ft_putchar_fd.c \
-	   ft_putstr_fd.c \
-	   ft_putendl_fd.c \
-	   ft_putnbr_fd.c
-OBJ := $(SRC:%.c=%.o)
+# Definitions of compilation options
+FLAGS := -Wall -Werror -Wextra -fsanitize=address -fno-omit-frame-pointer
+CC := gcc
 
-SRC_BONUS := $(SRC) \
-			 ft_lstiter_bonus.c \
-			 ft_lstlast_bonus.c \
-			 ft_lstmap_bonus.c \
-			 ft_lstnew_bonus.c \
-			 ft_lstsize_bonus.c \
-			 ft_lstadd_back_bonus.c \
-			 ft_lstadd_front_bonus.c \
-			 ft_lstclear_bonus.c \
-			 ft_lstdelone_bonus.c
-OBJ_BONUS := $(SRC_BONUS:%.c=%.o)
+# Definition of variable librairie
+LIB := lib_str.a
 
-NAME := libft.a
-HEADER := libft.h
+LIB_STR_SRC := src/
+LIB_STR_OBJ := obj/
 
-FLAGS := -Wall -Wextra -Werror
-CC := cc
+# Definition of variables needed to librairie's compilation
 
+STR_LIB := ft_atoi.c \
+		   ft_isalnum.c \
+		   ft_isascii.c \
+		   ft_isprint.c \
+		   ft_split.c \
+		   ft_strdup.c \
+		   ft_strjoin.c \
+		   ft_strlcpy.c \
+		   ft_strmapi.c \
+		   ft_strnstr.c \
+		   ft_strtrim.c \
+		   ft_tolower.c \
+		   ft_in.c \
+		   ft_isalpha.c \
+		   ft_isdigit.c \
+		   ft_itoa.c \
+		   ft_strchr.c \
+		   ft_striteri.c \
+		   ft_strlcat.c \
+		   ft_strlen.c \
+		   ft_strncmp.c \
+		   ft_strrchr.c \
+		   ft_substr.c \
+		   ft_toupper.c
+STR_LIB_H := $(LIB_STR)lib_str.h
+STR_OBJ_LIB := $(STR_LIB:%.c=$(LIB_STR_OBJ)%.o)
+
+# Definitions of differents printed colors
+LIGHTBLUE := '\e[0;32m'
+RED := '\e[0;31m'
+NEUTRAL := '\e[0m'
 #
-### compilations rules
+### Compilations rules
 #
 
-all: $(NAME)
+all: $(LIB)
 
-bonus: $(OBJ_BONUS)
-	ar rcs $(NAME) $^
+$(LIB): $(STR_OBJ_LIB)
+	ar rc $@ $^
+	ranlib $@
 
-$(NAME): $(OBJ)
-	ar rcs $@ $^
-
-%.o: %.c $(HEADER) Makefile
+$(STR_OBJ_LIB): $(LIB_STR_OBJ)%.o: $(LIB_STR_SRC)%.c $(STR_LIB_H)
 	$(CC) $(FLAGS) -c $< -o $@
 
 #
-### Cleaning rules
+### Directories rules
 #
 
-clean: 
-	@rm -v $(OBJ)
+make_dir:
+	@echo -e $(LIGHTBLUE)make librairies directories$(NEUTRAL)
+	mkdir -p $(LIB_STR_OBJ)
+	@echo -e $(LIGHTBLUE)done$(NEUTRAL)
+	@echo
 
-clean_bonus:
-	@rm -v $(OBJ_BONUS)
+#
+### Prints rules
+#
 
-fclean: clean
-	@rm -v $(NAME)
+# Compilation of librairie with print options
+print: print_ob $(STR_OBJ_LIB) print_lb $(LIB) print_le
 
-fclean_bonus: clean_bonus
-	@rm -v $(NAME)
+print_ob:
+	@echo -e $(LIGHTBLUE)compilation lib objects files$(NEUTRAL)
 
+print_oe:
+	@echo -e $(LIGHTBLUE)compilation lib objetcs files done$(NEUTRAL)
+	@echo
+
+print_lb: print_oe
+	@echo -e $(LIGHTBLUE)compilation librairie$(NEUTRAL)
+
+print_le:
+	@echo -e $(LIGHTBLUE)compilation librairie done$(NEUTRAL)
+	@echo
+
+#
+### Cleanup rules
+#
+
+# Classiques cleaning rules
+clean:
+	@echo -e $(LIGHTBLUE)remove all $(RED)objects files$(NEUTRAL)
+	@rm -rfv $(STR_OBJ_LIB)
+	@echo
+
+cleanlib: 
+	@echo -e $(LIGHTBLUE)remove $(RED)lib file$(NEUTRAL)
+	@rm -rfv $(LIB)
+	@echo
+
+cleandir: 
+	@echo -e $(LIGHTBLUE)remove all $(RED)directories$(NEUTRAL)
+	@rm -rfv $(LIB_STR_OBJ)
+	@echo
+
+clean_git:
+	@echo -e $(LIGHTBLUE)remove all $(RED)gitignore files$(NEUTRAL)
+	@rm -rfv ./obj/.gitignore
+	@echo
+
+gitignor: 
+	@echo -e $(LIGHTBLUE)reediting of differents $(RED)gitignores$(NEUTRAL)
+	touch ./obj/.gitignore
+	@echo "*" > ./obj/.gitignore
+	@echo !.gitignore >> ./obj/.gitignore
+	@echo
+
+# Full cleaning rules
+fclean: clean cleanlib clean_git cleandir make_dir gitignor
+
+# Remake rules
 re: fclean all
 
-rebonus: fclean_bonus bonus
+# Remakes rules with print options
+reprint: fclean print
 
-.PHONY: clean fclean re all clean_bonus bonus fclean_bonus rebonus
+.PHONY: all make_dir print print_ob print_oe print_lb print_le clean cleandir
+.PHONY: clean_git gitignor flcean re reprint cleanlib

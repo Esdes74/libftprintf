@@ -6,11 +6,30 @@
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:39:07 by eslamber          #+#    #+#             */
-/*   Updated: 2022/11/17 14:06:32 by eslamber         ###   ########.fr       */
+/*   Updated: 2022/11/18 12:23:16 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../lib_str.h"
+
+void	*ft_calloc(size_t nbr, size_t size)
+{
+	void					*new;
+	long long unsigned int	len;
+	long long unsigned int	tot;
+
+	len = 0;
+	tot = size * nbr;
+	new = malloc(tot);
+	if (new == 0)
+		return (0);
+	while (len < tot)
+	{
+		((unsigned char *)new)[len] = 0;
+		len++;
+	}
+	return (new);
+}
 
 size_t	analyse(char *s, char c, size_t *len)
 {

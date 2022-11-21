@@ -1,41 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 23:24:17 by eslamber          #+#    #+#             */
-/*   Updated: 2022/11/10 19:29:56 by eslamber         ###   ########.fr       */
+/*   Created: 2022/11/09 23:05:26 by eslamber          #+#    #+#             */
+/*   Updated: 2022/11/18 12:19:59 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../lib_str.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t n)
+char	*ft_strrchr(const char *s, int c)
 {
-	size_t	len;
-	size_t	len_test;
-	size_t	i;
-	char	*c;
+	size_t		len;
+	long long	save;
 
-	c = "";
-	if (little == c)
-		return ((char *)big);
 	len = 0;
-	len_test = 0;
-	while (big[len] != '\0' && len < n)
+	save = -1;
+	while (s[len] != '\0')
 	{
-		i = len;
-		len_test = 0;
-		while (big[i] == little[len_test] && big[i] != '\0')
-		{
-			i++;
-			len_test++;
-		}
-		if (little[len_test] == '\0')
-			return ((char *) big + len);
+		if (s[len] == c)
+			save = len;
 		len++;
 	}
-	return (0);
+	if (c == '\0')
+		return ((char *)s + len);
+	if (save == -1)
+		return (0);
+	else
+		return ((char *)s + save);
 }

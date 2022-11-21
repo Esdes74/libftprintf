@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 14:11:35 by eslamber          #+#    #+#             */
-/*   Updated: 2022/11/14 15:47:52 by eslamber         ###   ########.fr       */
+/*   Created: 2022/11/09 23:11:33 by eslamber          #+#    #+#             */
+/*   Updated: 2022/11/18 12:23:24 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../lib_str.h"
 
-void	ft_putchar_fd(char c, int fd)
+int	ft_strncmp(const char *first, const char *sec, size_t n)
 {
-	write(fd, &c, 1);
+	size_t	len;
+
+	len = 0;
+	while (first[len] != '\0' && sec[len] != '\0' && len < n)
+	{
+		if (first[len] != sec[len])
+			return (first[len] - sec[len]);
+		len++;
+	}
+	return (0);
 }

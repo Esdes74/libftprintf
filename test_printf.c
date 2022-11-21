@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/16 17:25:26 by eslamber          #+#    #+#             */
-/*   Updated: 2022/11/16 18:19:11 by eslamber         ###   ########.fr       */
+/*   Created: 2022/11/20 10:34:59 by eslamber          #+#    #+#             */
+/*   Updated: 2022/11/21 09:54:35 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
 
-void	ft_putnbr_fd(int n, int fd)
+int	main()
 {
-	if (n > 9)
-	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putchar_fd('0' + n % 10, fd);
-	}
-	else if (n < 0)
-	{
-		ft_putchar_fd('-', fd);
-		ft_putnbr_fd((n / 10) * -1, fd);
-		ft_putchar_fd('0' + (n % 10) * -1, fd);
-	}
-	else
-		ft_putchar_fd('0' + n, fd);
+	int	n;
+
+	n = 65;
+	printf("espace : |% 5d|\nminus : |%-5d|\nzeros : |%05d|\n", n, n, n);
+	n = 256854;
+	printf("point : |%.8d|\nminus : |%-5d|\nzeros : |%05d|\n", n, n, n);
+	n = 65;
+	printf("espace : |%5d|\nminus : |%-5d|\n'x' : |%0x|\n", n, n, n);
+	n = 0x5467;
+	printf("espace : |%5d|\nminus : |%-5d|\n'x' : |%0x|\n", n, n, n);
+	return 0;
 }

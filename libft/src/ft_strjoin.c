@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 14:31:51 by eslamber          #+#    #+#             */
-/*   Updated: 2022/11/14 14:36:22 by eslamber         ###   ########.fr       */
+/*   Created: 2022/11/14 14:45:41 by eslamber          #+#    #+#             */
+/*   Updated: 2022/11/18 12:20:55 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../lib_str.h"
 
-void	ft_putstr_fd(char *s, int fd)
+char	*ft_strjoin(const char *dest, const char *src)
 {
-	size_t	ind;
+	size_t	len_tot;
+	char	*new;
 
-	ind = 0;
-	while (s[ind] != '\0')
-		ft_putchar_fd(s[ind++], fd);
+	len_tot = ft_strlen(dest) + ft_strlen(src) + 1;
+	new = ft_substr(dest, 0, len_tot);
+	if (new == 0)
+		return (0);
+	ft_strlcat(new, src, len_tot);
+	return (new);
 }
