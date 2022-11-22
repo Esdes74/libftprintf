@@ -6,7 +6,7 @@
 #    By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 12:35:34 by eslamber          #+#    #+#              #
-#    Updated: 2022/11/21 16:41:02 by eslamber         ###   ########.fr        #
+#    Updated: 2022/11/22 10:23:49 by eslamber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,20 +114,23 @@ NEUTRAL := '\e[0m'
 all: $(LIB)
 
 $(LIB): $(ALL_OBJ_LIB)
-	ar rc $@ $^
+	ar rcs $@ $^
 	ranlib $@
 
-$(MATH_OBJ_LIB): $(LIB_MATH_OBJ)%.o: $(LIB_MATH_SRC)%.c $(MATH_LIB_H) libft.h
+$(MATH_OBJ_LIB): $(LIB_MATH_OBJ)%.o: $(LIB_MATH_SRC)%.c $(MATH_LIB_H) libft.h \
+	lib_fct.h
 	$(CC) $(FLAGS) -c $< -o $@
 
-$(MEM_OBJ_LIB): $(LIB_MEM_OBJ)%.o: $(LIB_MEM_SRC)%.c $(MEM_LIB_H) libft.h
+$(MEM_OBJ_LIB): $(LIB_MEM_OBJ)%.o: $(LIB_MEM_SRC)%.c $(MEM_LIB_H) libft.h \
+	lib_fct.h
 	$(CC) $(FLAGS) -c $< -o $@
 
 $(PRINT_OBJ_LIB): $(LIB_PRINT_OBJ)%.o: $(LIB_PRINT_SRC)%.c $(PRINT_LIB_H) \
-	libft.h
+	libft.h lib_fct.h
 	$(CC) $(FLAGS) -c $< -o $@
 
-$(STR_OBJ_LIB): $(LIB_STR_OBJ)%.o: $(LIB_STR_SRC)%.c $(STR_LIB_H) libft.h
+$(STR_OBJ_LIB): $(LIB_STR_OBJ)%.o: $(LIB_STR_SRC)%.c $(STR_LIB_H) libft.h \
+	lib_fct.h
 	$(CC) $(FLAGS) -c $< -o $@
 
 #
