@@ -6,7 +6,7 @@
 #    By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 10:00:43 by eslamber          #+#    #+#              #
-#    Updated: 2022/11/22 10:22:36 by eslamber         ###   ########.fr        #
+#    Updated: 2022/11/23 09:02:59 by eslamber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ DIR_LIB := libft/
 LIB := $(DIR_LIB)lib_fct.a
 HEADER_LIB := $(DIR_LIB)lib_fct.h
 
-SRC := ft_printf.c
+SRC := ft_printf.c \
+	   conv_ten_to_hex.c
 OBJ := $(SRC:%.c=%.o)
 
 SRC_B := $(SRC) \
@@ -41,7 +42,7 @@ comp_bonus: $(OBJ_B)
 	ranlib $(NAME)
 
 $(LIB): $(HEADER_LIB)
-	@make print -C ./libft
+	@make -C ./libft
 
 $(NAME): $(OBJ)
 	ar rcs $@ $^

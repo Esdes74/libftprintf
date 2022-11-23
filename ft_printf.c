@@ -6,13 +6,25 @@
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:09:52 by eslamber          #+#    #+#             */
-/*   Updated: 2022/11/21 16:59:21 by eslamber         ###   ########.fr       */
+/*   Updated: 2022/11/23 08:49:47 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include "libft/libft.h"
 #include <stdio.h>
+
+int	following_is_format(const char c, va_list *args)
+{
+	if (c == 'u')
+		ft_putnbr_fd(va_arg(*args, unsigned), 1);
+	if (c == 'x')
+		if (conv_ten_to_hex(va_arg(*args, int), 'a') == 0)
+			return (0);
+	if (c == 'X')
+		if (conv_ten_to_hex(va_arg(*args, int), 'A') == 0)
+			return (0);
+	return (1);
+}
 
 int	is_format(const char c, size_t *ind, va_list *args)
 {
@@ -34,6 +46,8 @@ int	is_format(const char c, size_t *ind, va_list *args)
 			va_arg(*args, int);
 			ft_putchar_fd('%', 1);
 		}
+		if (following_is_format(c, args) == 0)
+			return (-1);
 		(*ind)++;
 		return (1);
 	}
@@ -45,12 +59,16 @@ int	ft_printf(const char *str, ...)
 {
 	size_t	ind;
 	va_list	args;
+	int		format;
 
 	ind = 0;
 	va_start(args, str);
 	while (str[ind] != '\0')
 	{
-		if (str[ind] == '%' && is_format(str[ind + 1], &ind, &args) == 1);
+		format = is_format(str[ind + 1], &ind, &args);
+		if (str[ind] == '%' && format == 1);
+		else if (format == -1)
+			return (1);
 		else
 			ft_putchar_fd(str[ind], 1);
 		ind++;
