@@ -6,7 +6,7 @@
 #    By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 12:35:34 by eslamber          #+#    #+#              #
-#    Updated: 2022/11/21 10:49:22 by eslamber         ###   ########.fr        #
+#    Updated: 2022/11/24 19:08:47 by eslamber         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -135,7 +135,7 @@ $(STR_OBJ_LIB): $(LIB_STR_OBJ)%.o: $(LIB_STR_SRC)%.c $(STR_LIB_H) lib_fct.h
 #
 
 make_dir:
-	@echo -e $(LIGHTBLUE)make librairies directories$(NEUTRAL)
+	@echo -e $(LIGHTBLUE)make libraries directories$(NEUTRAL)
 	mkdir -p $(ALL_LIB_OBJ_DIR)
 	@echo -e $(LIGHTBLUE)done$(NEUTRAL)
 	@echo
@@ -144,7 +144,7 @@ make_dir:
 ### Prints rules
 #
 
-# Compilation of librairie with print options
+# Compilation of library with print options
 print: print_ob $(ALL_OBJ_LIB) print_lb $(LIB) print_le
 
 print_ob:
@@ -165,7 +165,7 @@ print_le:
 ### Cleanup rules
 #
 
-# Classiques cleaning rules
+# Classic cleaning rules
 clean:
 	@echo -e $(LIGHTBLUE)remove all $(RED)objects files$(NEUTRAL)
 	@rm -rfv $(ALL_OBJ_LIB)
@@ -173,7 +173,7 @@ clean:
 
 cleanlib: 
 	@echo -e $(LIGHTBLUE)remove $(RED)lib file$(NEUTRAL)
-	@rm -v $(LIB)
+	@rm -rfv $(LIB)
 	@echo
 
 cleandir: 

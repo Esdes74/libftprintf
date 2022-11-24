@@ -6,7 +6,7 @@
 #    By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 10:00:43 by eslamber          #+#    #+#              #
-#    Updated: 2022/11/23 09:02:59 by eslamber         ###   ########.fr        #
+#    Updated: 2022/11/24 17:20:51 by eslamber         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,14 +38,16 @@ all: $(LIB) $(NAME)
 bonus: $(LIB) comp_bonus
 
 comp_bonus: $(OBJ_B)
-	ar rcs $(NAME) $^
+	cp libft/libft.a $(NAME)
+	ar rucs $(NAME) $^
 	ranlib $(NAME)
 
 $(LIB): $(HEADER_LIB)
 	@make -C ./libft
 
 $(NAME): $(OBJ)
-	ar rcs $@ $^
+	cp libft/libft.a $(NAME)
+	ar rcus $@ $^
 	ranlib $@
 
 %.o: %.c $(HEADER)
@@ -57,6 +59,7 @@ $(NAME): $(OBJ)
 
 clean:
 	@rm -rfv $(OBJ_B)
+	@make clean -C libft
 
 fclean: clean
 	@rm -rfv $(LIB) $(NAME)
