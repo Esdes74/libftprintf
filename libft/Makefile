@@ -6,7 +6,7 @@
 #    By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 12:35:34 by eslamber          #+#    #+#              #
-#    Updated: 2022/11/25 14:48:59 by eslamber         ###   ########.fr        #
+#    Updated: 2022/11/25 15:27:31 by eslamber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@
 #
 
 # Definitions of compilation options
-FLAGS := -Wall -Werror -Wextra -fsanitize=address -fno-omit-frame-pointer
+# FLAGS := -Wall -Werror -Wextra -fsanitize=address -fno-omit-frame-pointer
+FLAGS := -Wall -Werror -Wextra
 CC := gcc
 
 # Definition of variable librairie

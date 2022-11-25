@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   conv_ten_to_hex.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
+/*   By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 08:03:08 by eslamber          #+#    #+#             */
-/*   Updated: 2022/11/23 09:05:47 by eslamber         ###   ########.fr       */
+/*   Updated: 2022/11/25 15:28:23 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 #include <stdio.h>
 
 char	*calc_len_hex(int nbr, int *len)
@@ -65,8 +65,9 @@ int	conv_ten_to_hex(int nbr, char dep)
 	free(res);
 	return (1);
 }
-
+/*
 int	main(void)
 {
 	return (0);
 }
+*/

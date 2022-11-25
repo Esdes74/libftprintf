@@ -6,11 +6,11 @@
 /*   By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:09:52 by eslamber          #+#    #+#             */
-/*   Updated: 2022/11/25 09:42:52 by eslamber         ###   ########.fr       */
+/*   Updated: 2022/11/25 15:39:58 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 #include <stdio.h>
 
 int	following_is_format(const char c, va_list *args)
@@ -77,12 +77,12 @@ int	ft_printf(const char *str, ...)
 	return (0);
 }
 
-int	main(void)
-{
-	int		n;
+// int	main(void)
+// {
+// 	int		n;
 
-	n = 124;
-	printf("sdgsfh|%d|bsovud|%s|shvyh|%c|bsquygheig|%i|hfd%%\n", n, "little", n, n);
-	ft_printf("sdgsfh|%d|bsovud|%s|shvyh|%c|bsquygheig|%i|hfd%%\n", n, "little", n, n);
-	printf("sdgsfh|%d|bsovud|%s|shvyh|%c|bsquygheig|%i|hfd%%\n", n, "little", n, n);
-}
+// 	n = 124;
+// 	printf("premier = |%d| second = |%s| troisieme = |%c| quatrieme = |%i| cinquieme = %%\n", n, "little", n, n);
+// 	ft_printf("premier = |%d| second = |%s| troisieme = |%c| quatrieme = |%i| cinquieme = %%\n", n, "little", n, n);
+// 	printf("premier = |%i| second = |%s| troisieme = |%c| quatrieme = |%i| cinquieme = %%\n", n, "little", n, n);
+// }
