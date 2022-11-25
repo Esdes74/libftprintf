@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+         #
+#    By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 12:35:34 by eslamber          #+#    #+#              #
-#    Updated: 2022/11/24 19:08:47 by eslamber         ###   ########lyon.fr    #
+#    Updated: 2022/11/25 14:48:59 by eslamber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,7 +94,8 @@ STR_LIB := ft_atoi.c \
 		   ft_strncmp.c \
 		   ft_strrchr.c \
 		   ft_substr.c \
-		   ft_toupper.c
+		   ft_toupper.c \
+		   ft_calloc_str.c
 STR_LIB_H := $(LIB_STR)lib_str.h
 STR_OBJ_LIB := $(STR_LIB:%.c=$(LIB_STR_OBJ)%.o)
 
@@ -135,7 +136,7 @@ $(STR_OBJ_LIB): $(LIB_STR_OBJ)%.o: $(LIB_STR_SRC)%.c $(STR_LIB_H) lib_fct.h
 #
 
 make_dir:
-	@echo -e $(LIGHTBLUE)make libraries directories$(NEUTRAL)
+	@echo -e $(LIGHTBLUE)make librairies directories$(NEUTRAL)
 	mkdir -p $(ALL_LIB_OBJ_DIR)
 	@echo -e $(LIGHTBLUE)done$(NEUTRAL)
 	@echo
@@ -144,7 +145,7 @@ make_dir:
 ### Prints rules
 #
 
-# Compilation of library with print options
+# Compilation of librairie with print options
 print: print_ob $(ALL_OBJ_LIB) print_lb $(LIB) print_le
 
 print_ob:
@@ -165,7 +166,7 @@ print_le:
 ### Cleanup rules
 #
 
-# Classic cleaning rules
+# Classiques cleaning rules
 clean:
 	@echo -e $(LIGHTBLUE)remove all $(RED)objects files$(NEUTRAL)
 	@rm -rfv $(ALL_OBJ_LIB)

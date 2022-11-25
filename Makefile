@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+         #
+#    By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 10:00:43 by eslamber          #+#    #+#              #
-#    Updated: 2022/11/24 17:20:51 by eslamber         ###   ########lyon.fr    #
+#    Updated: 2022/11/25 15:00:11 by eslamber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,22 +25,11 @@ SRC := ft_printf.c \
 	   conv_ten_to_hex.c
 OBJ := $(SRC:%.c=%.o)
 
-SRC_B := $(SRC) \
-		 o_minus.c
-OBJ_B := $(SRC_B:%.c=%.o)
-
 #
 ### Compilation rules
 #
 
 all: $(LIB) $(NAME)
-
-bonus: $(LIB) comp_bonus
-
-comp_bonus: $(OBJ_B)
-	cp libft/libft.a $(NAME)
-	ar rucs $(NAME) $^
-	ranlib $(NAME)
 
 $(LIB): $(HEADER_LIB)
 	@make -C ./libft
@@ -67,6 +56,4 @@ fclean: clean
 
 re: fclean all
 
-rebonus: fclean bonus
-
-.PHONY: all clean fclean re bonus rebonus
+.PHONY: all clean fclean re
