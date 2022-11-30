@@ -6,49 +6,61 @@
 /*   By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:09:52 by eslamber          #+#    #+#             */
-/*   Updated: 2022/11/25 15:39:58 by eslamber         ###   ########.fr       */
+/*   Updated: 2022/11/30 18:13:33 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
+#include <limits.h>
 
-int	following_is_format(const char c, va_list *args)
+static int	print_unsigned(int nbr, int fd)
 {
-	if (c == 'u')
-		ft_putnbr_fd(va_arg(*args, unsigned), 1);
-	if (c == 'x')
-		if (conv_ten_to_hex(va_arg(*args, int), 'a') == 0)
-			return (0);
-	if (c == 'X')
-		if (conv_ten_to_hex(va_arg(*args, int), 'A') == 0)
-			return (0);
-	return (1);
+	unsigned int	u_nbr;
+	size_t			len;
+
+	u_nbr = nbr;
+	len = 0;
+	if (u_nbr > 0)
+	{
+		len += print_unsigned(u_nbr / 10, fd);
+		len += ft_putchar_fd('0' + u_nbr % 10, fd);
+	}
+	return (len);
 }
 
-int	is_format(const char c, size_t *ind, va_list *args)
+static void	following_is_format(const char *s, int i, va_list *args, int *res)
 {
-	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u' \
-			|| c == 'x' || c == 'X' || c == '%')
+	unsigned int	u_nbr;
+	int				i_nbr;
+
+	if (s[i + 1] == 'u')
+		(*res) += print_unsigned(va_arg(*args, int), 1);
+	if (s[i + 1] == 'x')
+		conv_ten_to_hex(va_arg(*args, int), 'a', res);
+	if (s[i + 1] == 'X')
+		conv_ten_to_hex(va_arg(*args, int), 'A', res);
+}
+
+static int	is_format(const char *s, size_t i, va_list *args, int *res)
+{
+	if (s[i] == '%' && (s[i + 1] == 'c' || s[i + 1] == 's' || s[i + 1] == 'p' \
+				|| s[i + 1] == 'd' || s[i + 1] == 'i' || s[i + 1] == 'u' \
+				|| s[i + 1] == 'x' || s[i + 1] == 'X' || s[i + 1] == '%'))
 	{
-		if (c == 'c')
-			ft_putchar_fd(va_arg(*args, int), 1);
-		else if (c == 's')
-			ft_putstr_fd(va_arg(*args, char *), 1);
-		else if (c == 'p')
-			ft_putnbr_fd(va_arg(*args, int), 1);
-		else if (c == 'd')
-			ft_putnbr_fd(va_arg(*args, int), 1);
-		else if (c == 'i')
-			ft_putnbr_fd(va_arg(*args, int), 1);
-		else if (c == '%')
-		{
-			va_arg(*args, int);
-			ft_putchar_fd('%', 1);
-		}
-		if (following_is_format(c, args) == 0)
-			return (-1);
-		(*ind)++;
+		if (s[i + 1] == 'c')
+			(*res) += ft_putchar_fd(va_arg(*args, int), 1);
+		else if (s[i + 1] == 's')
+			(*res) += ft_putstr_fd(va_arg(*args, char *), 1);
+		else if (s[i + 1] == 'p')
+			print_adress(va_arg(*args, long long unsigned int), 'a', res, 1);
+		else if (s[i + 1] == 'd')
+			(*res) += ft_putnbr_fd(va_arg(*args, int), 1);
+		else if (s[i + 1] == 'i')
+			(*res) += ft_putnbr_fd(va_arg(*args, int), 1);
+		else if (s[i + 1] == '%')
+			(*res) += ft_putchar_fd('%', 1);
+		following_is_format(s, i, args, res);
 		return (1);
 	}
 	else
@@ -60,29 +72,36 @@ int	ft_printf(const char *str, ...)
 	size_t	ind;
 	va_list	args;
 	int		format;
+	int		res;
 
 	ind = 0;
+	res = 0;
 	va_start(args, str);
 	while (str[ind] != '\0')
 	{
-		format = is_format(str[ind + 1], &ind, &args);
-		if (str[ind] == '%' && format == 1);
+		format = is_format(str, ind, &args, &res);
+		if (str[ind] == '%' && format == 1)
+			ind++;
 		else if (format == -1)
-			return (1);
+			return (res);
 		else
-			ft_putchar_fd(str[ind], 1);
+			res += ft_putchar_fd(str[ind], 1);
 		ind++;
 	}
 	va_end(args);
-	return (0);
+	return (res);
 }
 
-// int	main(void)
-// {
-// 	int		n;
+/* int	main(void) */
+/* { */
+/* 	long long		n; */
+/* 	int		ret; */
 
-// 	n = 124;
-// 	printf("premier = |%d| second = |%s| troisieme = |%c| quatrieme = |%i| cinquieme = %%\n", n, "little", n, n);
-// 	ft_printf("premier = |%d| second = |%s| troisieme = |%c| quatrieme = |%i| cinquieme = %%\n", n, "little", n, n);
-// 	printf("premier = |%i| second = |%s| troisieme = |%c| quatrieme = |%i| cinquieme = %%\n", n, "little", n, n);
-// }
+/* 	n = 846568464687684684; */
+/* 	printf("printf pointeur = %p\n", &n); */
+/* 	ft_printf("ft_printf pointeur = %p\n", &n); */
+/* 	ret = printf("premier = |%d| second = |%s| troisieme = |%c| quatrieme = |%i| cinquieme = %% sixieme = |%u| septieme = |%x| huitieme = |%X| neuvieme = |%p|\n", n, "little", n, n, n, n, n, &n); */
+/* 	printf("printf = %d\n", ret); */
+/* 	ret = ft_printf("premier = |%d| second = |%s| troisieme = |%c| quatrieme = |%i| cinquieme = %% sixieme = |%u| septieme = |%x| huitieme = |%X| neuvieme = |%p|\n", n, "little", n, n, n, n, n, &n); */
+/* 	printf("printf = %d\n", ret); */
+/* } */

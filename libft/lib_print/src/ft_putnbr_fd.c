@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 17:25:26 by eslamber          #+#    #+#             */
-/*   Updated: 2022/11/25 14:11:59 by eslamber         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:32:39 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,3 @@ size_t	ft_putnbr_fd(int n, int fd)
 		len += ft_putchar_fd('0' + n, fd);
 	return (len);
 }
-

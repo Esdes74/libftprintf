@@ -6,13 +6,13 @@
 /*   By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:07:36 by eslamber          #+#    #+#             */
-/*   Updated: 2022/11/25 14:20:20 by eslamber         ###   ########.fr       */
+/*   Updated: 2022/11/30 18:11:09 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib_str.h"
 
-static void	ft_analyse(const char *src, const char *set, size_t *len, size_t *len_f)
+static void	analy(const char *src, const char *set, size_t *len, size_t *len_f)
 {
 	size_t	save_len;
 
@@ -35,7 +35,7 @@ char	*ft_strtrim(const char *src, const char *set)
 	size_t	end;
 	char	*new;
 
-	ft_analyse(src, set, &begin, &end);
+	analy(src, set, &begin, &end);
 	new = ft_substr(src, (unsigned int) begin, end - begin + 1);
 	if (new == 0)
 		return (0);
