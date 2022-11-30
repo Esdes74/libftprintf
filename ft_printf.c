@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:09:52 by eslamber          #+#    #+#             */
-/*   Updated: 2022/11/30 18:13:33 by eslamber         ###   ########.fr       */
+/*   Updated: 2022/11/30 19:08:57 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,19 +89,5 @@ int	ft_printf(const char *str, ...)
 		ind++;
 	}
 	va_end(args);
-	return (res);
+	return (res + 15);
 }
-
-/* int	main(void) */
-/* { */
-/* 	long long		n; */
-/* 	int		ret; */
-
-/* 	n = 846568464687684684; */
-/* 	printf("printf pointeur = %p\n", &n); */
-/* 	ft_printf("ft_printf pointeur = %p\n", &n); */
-/* 	ret = printf("premier = |%d| second = |%s| troisieme = |%c| quatrieme = |%i| cinquieme = %% sixieme = |%u| septieme = |%x| huitieme = |%X| neuvieme = |%p|\n", n, "little", n, n, n, n, n, &n); */
-/* 	printf("printf = %d\n", ret); */
-/* 	ret = ft_printf("premier = |%d| second = |%s| troisieme = |%c| quatrieme = |%i| cinquieme = %% sixieme = |%u| septieme = |%x| huitieme = |%X| neuvieme = |%p|\n", n, "little", n, n, n, n, n, &n); */
-/* 	printf("printf = %d\n", ret); */
-/* } */

@@ -6,7 +6,7 @@
 #    By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 10:00:43 by eslamber          #+#    #+#              #
-#    Updated: 2022/11/25 15:26:43 by eslamber         ###   ########.fr        #
+#    Updated: 2022/11/30 19:23:34 by eslamber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ $(LIB): $(HEADER_LIB)
 
 $(NAME): $(OBJ)
 	cp libft/libft.a $(NAME)
-	ar rcus $@ $^
+	ar rcUs $@ $^
 	ranlib $@
 
 %.o: %.c $(HEADER)
@@ -47,11 +47,11 @@ $(NAME): $(OBJ)
 #
 
 clean:
-	@rm -rfv $(OBJ_B)
+	@rm -rfv $(OBJ)
 	@make clean -C libft
 
-fclean: clean
-	@rm -rfv $(LIB) $(NAME)
+fclean:
+	@rm -rfv $(NAME) $(OBJ)
 	@make fclean -C libft
 
 re: fclean all
