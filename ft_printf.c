@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:09:52 by eslamber          #+#    #+#             */
-/*   Updated: 2022/11/30 19:08:57 by eslamber         ###   ########.fr       */
+/*   Updated: 2022/12/01 18:27:03 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,19 @@ static int	print_unsigned(int nbr, int fd)
 
 static void	following_is_format(const char *s, int i, va_list *args, int *res)
 {
-	unsigned int	u_nbr;
-	int				i_nbr;
+	int	u;
 
-	if (s[i + 1] == 'u')
-		(*res) += print_unsigned(va_arg(*args, int), 1);
-	if (s[i + 1] == 'x')
-		conv_ten_to_hex(va_arg(*args, int), 'a', res);
-	if (s[i + 1] == 'X')
-		conv_ten_to_hex(va_arg(*args, int), 'A', res);
+	u = va_arg(*args, int);
+	if (u == 0)
+		(*res) += ft_putchar_fd('0', 1);
+	else if (s[i + 1] == 'u')
+		(*res) += print_unsigned(u, 1);
+	else if (s[i + 1] == 'x')
+		conv_ten_to_hex(u, 'a', res);
+	else if (s[i + 1] == 'X')
+		conv_ten_to_hex(u, 'A', res);
+	else if (s[i + 1] == 'i')
+		(*res) += ft_putnbr_fd(u, 1);
 }
 
 static int	is_format(const char *s, size_t i, va_list *args, int *res)
@@ -56,11 +60,10 @@ static int	is_format(const char *s, size_t i, va_list *args, int *res)
 			print_adress(va_arg(*args, long long unsigned int), 'a', res, 1);
 		else if (s[i + 1] == 'd')
 			(*res) += ft_putnbr_fd(va_arg(*args, int), 1);
-		else if (s[i + 1] == 'i')
-			(*res) += ft_putnbr_fd(va_arg(*args, int), 1);
 		else if (s[i + 1] == '%')
 			(*res) += ft_putchar_fd('%', 1);
-		following_is_format(s, i, args, res);
+		else
+			following_is_format(s, i, args, res);
 		return (1);
 	}
 	else
@@ -89,5 +92,5 @@ int	ft_printf(const char *str, ...)
 		ind++;
 	}
 	va_end(args);
-	return (res + 15);
+	return (res);
 }
