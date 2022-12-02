@@ -6,12 +6,11 @@
 /*   By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 08:03:08 by eslamber          #+#    #+#             */
-/*   Updated: 2022/12/02 12:41:57 by eslamber         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:39:43 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 void	print_adress(long long int nbr, char dep, int *res, int mod)
 {
