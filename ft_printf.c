@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:09:52 by eslamber          #+#    #+#             */
-/*   Updated: 2022/12/01 18:27:03 by eslamber         ###   ########.fr       */
+/*   Updated: 2022/12/02 12:39:24 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@ static int	print_unsigned(int nbr, int fd)
 		len += ft_putchar_fd('0' + u_nbr % 10, fd);
 	}
 	return (len);
+}
+
+static void	call_print_adr(long long int nbr, char dep, int *res, int mod)
+{
+	if (nbr == 0)
+		(*res) += ft_putstr_fd("0x0", 1);
+	else
+		print_adress(nbr, dep, res, mod);
 }
 
 static void	following_is_format(const char *s, int i, va_list *args, int *res)
@@ -57,7 +65,7 @@ static int	is_format(const char *s, size_t i, va_list *args, int *res)
 		else if (s[i + 1] == 's')
 			(*res) += ft_putstr_fd(va_arg(*args, char *), 1);
 		else if (s[i + 1] == 'p')
-			print_adress(va_arg(*args, long long unsigned int), 'a', res, 1);
+			call_print_adr(va_arg(*args, long long unsigned int), 'a', res, 1);
 		else if (s[i + 1] == 'd')
 			(*res) += ft_putnbr_fd(va_arg(*args, int), 1);
 		else if (s[i + 1] == '%')

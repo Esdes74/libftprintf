@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 08:03:08 by eslamber          #+#    #+#             */
-/*   Updated: 2022/12/02 11:49:47 by eslamber         ###   ########.fr       */
+/*   Updated: 2022/12/02 12:41:57 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void	print_adress(long long int nbr, char dep, int *res, int mod)
 {
 	long long unsigned int	u_nbr;
 
-	if (nbr == 0)
-		(*res) += ft_putstr_fd("0x0", 1);
-	else if (mod == 1)
+	if (mod == 1)
 		(*res) += ft_putstr_fd("0x", 1);
 	u_nbr = nbr;
 	if (u_nbr > 0)
