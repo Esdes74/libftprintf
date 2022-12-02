@@ -6,7 +6,7 @@
 #    By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 10:00:43 by eslamber          #+#    #+#              #
-#    Updated: 2022/11/30 19:23:34 by eslamber         ###   ########.fr        #
+#    Updated: 2022/12/02 09:41:59 by eslamber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ $(LIB): $(HEADER_LIB)
 
 $(NAME): $(OBJ)
 	cp libft/libft.a $(NAME)
-	ar rcUs $@ $^
+	ar rcus $@ $^
 	ranlib $@
 
 %.o: %.c $(HEADER)
