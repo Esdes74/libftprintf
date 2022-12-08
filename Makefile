@@ -6,12 +6,11 @@
 #    By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 10:00:43 by eslamber          #+#    #+#              #
-#    Updated: 2022/12/02 09:41:59 by eslamber         ###   ########.fr        #
+#    Updated: 2022/12/08 10:51:42 by eslamber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC := clang
-# FLAGS := -Wall -Werror -Wextra -fsanitize=address -fno-omit-frame-pointer
+CC := gcc
 FLAGS := -Wall -Werror -Wextra
 
 NAME := libftprintf.a
