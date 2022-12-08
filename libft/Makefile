@@ -6,7 +6,7 @@
 #    By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 12:35:34 by eslamber          #+#    #+#              #
-#    Updated: 2022/11/25 15:27:31 by eslamber         ###   ########.fr        #
+#    Updated: 2022/12/08 11:19:47 by eslamber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,10 +105,6 @@ ALL_OBJ_LIB := $(MATH_OBJ_LIB) \
 			   $(PRINT_OBJ_LIB) \
 			   $(STR_OBJ_LIB)
 
-# Definitions of differents printed colors
-LIGHTBLUE := '\e[0;32m'
-RED := '\e[0;31m'
-NEUTRAL := '\e[0m'
 #
 ### Compilations rules
 #
@@ -137,9 +133,9 @@ $(STR_OBJ_LIB): $(LIB_STR_OBJ)%.o: $(LIB_STR_SRC)%.c $(STR_LIB_H) lib_fct.h
 #
 
 make_dir:
-	@echo -e $(LIGHTBLUE)make librairies directories$(NEUTRAL)
+	@echo make librairies directories
 	mkdir -p $(ALL_LIB_OBJ_DIR)
-	@echo -e $(LIGHTBLUE)done$(NEUTRAL)
+	@echo done$
 	@echo
 
 #
@@ -150,17 +146,17 @@ make_dir:
 print: print_ob $(ALL_OBJ_LIB) print_lb $(LIB) print_le
 
 print_ob:
-	@echo -e $(LIGHTBLUE)compilation lib objects files$(NEUTRAL)
+	@echo compilation lib objects files
 
 print_oe:
-	@echo -e $(LIGHTBLUE)compilation lib objetcs files done$(NEUTRAL)
+	@echo compilation lib objetcs files done
 	@echo
 
 print_lb: print_oe
-	@echo -e $(LIGHTBLUE)compilation librairie$(NEUTRAL)
+	@echo compilation librairie
 
 print_le:
-	@echo -e $(LIGHTBLUE)compilation librairie done$(NEUTRAL)
+	@echo compilation librairie done
 	@echo
 
 #
@@ -169,27 +165,27 @@ print_le:
 
 # Classiques cleaning rules
 clean:
-	@echo -e $(LIGHTBLUE)remove all $(RED)objects files$(NEUTRAL)
+	@echo remove all objects files
 	@rm -rfv $(ALL_OBJ_LIB)
 	@echo
 
 cleanlib: 
-	@echo -e $(LIGHTBLUE)remove $(RED)lib file$(NEUTRAL)
+	@echo remove lib file
 	@rm -rfv $(LIB)
 	@echo
 
 cleandir: 
-	@echo -e $(LIGHTBLUE)remove all $(RED)directories$(NEUTRAL)
+	@echo remove all directories
 	@rm -rfv $(ALL_LIB_OBJ_DIR)
 	@echo
 
 clean_git:
-	@echo -e $(LIGHTBLUE)remove all $(RED)gitignore files$(NEUTRAL)
+	@echo remove all gitignore files
 	@rm -rfv ./*/obj/.gitignore
 	@echo
 
 gitignor: 
-	@echo -e $(LIGHTBLUE)reediting of differents $(RED)gitignores$(NEUTRAL)
+	@echo reediting of differents gitignores
 	touch ./lib_math/obj/.gitignore
 	@echo "*" > ./lib_math/obj/.gitignore
 	@echo !.gitignore >> ./lib_math/obj/.gitignore

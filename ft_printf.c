@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:09:52 by eslamber          #+#    #+#             */
-/*   Updated: 2022/12/02 15:41:21 by eslamber         ###   ########.fr       */
+/*   Updated: 2022/12/08 11:22:17 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,18 @@ int	ft_printf(const char *str, ...)
 	int		format;
 	int		res;
 
+	if (write(1, 0, 0) == -1)
+		return (-1);
 	ind = 0;
 	res = 0;
 	va_start(args, str);
 	while (str[ind] != '\0')
 	{
 		format = is_format(str, ind, &args, &res);
+		if (str[ind] == '%' && format == 0)
+			ind++;
 		if (str[ind] == '%' && format == 1)
 			ind++;
-		else if (format == -1)
-			return (res);
 		else
 			res += ft_putchar_fd(str[ind], 1);
 		ind++;
